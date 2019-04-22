@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     //默认图片
     private void viewImages() {
-        //初始化数据，只能传入String类型。若传入其他实体类，需要试用自定义加载图片
+        //初始化数据，只能传入String类型。若传入其他实体类，需要使用自定义加载图片
         List<String> list = new ArrayList<>();
         list.add("https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=e95179517d8da977512f802b8050f872/91529822720e0cf3740bf4990446f21fbf09aad0.jpg");
         list.add("https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=d8d48aa8a151f3dedcb2bf64a4eff0ec/4610b912c8fcc3ce863f8b519c45d688d53f20d0.jpg");
