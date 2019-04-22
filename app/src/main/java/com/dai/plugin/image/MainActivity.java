@@ -1,14 +1,15 @@
 package com.dai.plugin.image;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.bumptech.glide.Glide;
 import com.dai.plugin.imageutils.PhotoView;
 import com.dai.plugin.imageutils.ViewImageActivity;
 import com.dai.plugin.imageutils.interfaces.OnLoadImageListener;
-import com.dai.plugin.imageutils.log.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
         //跳转加载 添加OnLoadImageListener参数后需要自行处理图片加载方法
         ViewImageActivity.start(MainActivity.this, list, new OnLoadImageListener() {
             @Override
-            public void onLoadImage(Object bean, PhotoView imageView) {
+            public void onLoadImage(Context context, Object bean, PhotoView imageView) {
                 //PhotoView 继承ImageView，所以可以当作ImageView使用
                 if (bean instanceof ImageBean) {
                     //此处自定义图片加载方法
-                    LogManager.getLogger().i("imageUrl : ", ((ImageBean) bean).getUrl());
+                    Glide.with(context).load(((ImageBean) bean).getUrl()).into(imageView);
                 }
             }
         });

@@ -58,7 +58,7 @@ public class ViewImageActivity<T> extends FragmentActivity {
         images = (List<T>) getIntent().getSerializableExtra(EXTRA_IMAGE_URLS);
 
         mPager = (HackyViewPager) findViewById(R.id.pager);
-        ImagePagerAdapter mAdapter = new ImagePagerAdapter(getSupportFragmentManager(), images);
+        final ImagePagerAdapter mAdapter = new ImagePagerAdapter(getSupportFragmentManager(), images);
         mPager.setAdapter(mAdapter);
 
         indicator = (TextView) findViewById(R.id.indicator);

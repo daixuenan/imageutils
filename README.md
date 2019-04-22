@@ -95,16 +95,16 @@ public class ImageBean implements Serializable {
         list.add(new ImageBean("https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=3be4bb5513950a7b6a3548c43ad0625c/c8ea15ce36d3d539c1ecefa03487e950342ab084.jpg"));
 
         //跳转加载 添加OnLoadImageListener参数后需要自行处理图片加载方法
-        ViewImageActivity.start(MainActivity.this, list, new OnLoadImageListener() {
-            @Override
-            public void onLoadImage(Object bean, PhotoView imageView) {
-                //PhotoView 继承ImageView，所以可以当作ImageView使用
-                if (bean instanceof ImageBean) {
-                    //此处自定义图片加载方法
-                    LogManager.getLogger().i("imageUrl : ", ((ImageBean) bean).getUrl());
-                }
-            }
-        });
+                ViewImageActivity.start(MainActivity.this, list, new OnLoadImageListener() {
+                    @Override
+                    public void onLoadImage(Context context, Object bean, PhotoView imageView) {
+                        //PhotoView 继承ImageView，所以可以当作ImageView使用
+                        if (bean instanceof ImageBean) {
+                            //此处自定义图片加载方法 注意对imageView操作涉及到的context参数要用回调中的
+                            Glide.with(context).load(((ImageBean) bean).getUrl()).into(imageView);
+                        }
+                    }
+                });
 ```
 
 #### 参与贡献

@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.dai.plugin.imageutils.interfaces.OnLoadImageListener;
+import com.dai.plugin.imageutils.log.LogManager;
 
 import java.io.Serializable;
 
@@ -18,8 +18,6 @@ import java.io.Serializable;
 public class ImageDetailFragment<T> extends Fragment {
 
     public PhotoView mImageView;
-    private ProgressBar progressBar;
-    public PhotoViewAttacher mAttacher;
 
     private T bean;
 
@@ -44,14 +42,13 @@ public class ImageDetailFragment<T> extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.default_frame_image_detail, container, false);
         mImageView = (PhotoView) v.findViewById(R.id.image);
-        mAttacher = new PhotoViewAttacher(mImageView);
-        mAttacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+
+        mImageView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
             @Override
-            public void onPhotoTap(View arg0, float arg1, float arg2) {
+            public void onPhotoTap(View view, float x, float y) {
                 getActivity().finish();
             }
         });
-        progressBar = (ProgressBar) v.findViewById(R.id.loading);
         return v;
     }
 
@@ -59,12 +56,11 @@ public class ImageDetailFragment<T> extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         if (bean != null) {
             if (mOnLoadImageListener == null && bean instanceof String) {
                 Glide.with(getActivity()).load(bean.toString()).into(mImageView);
-            } else {
-                mOnLoadImageListener.onLoadImage(bean, mImageView);
+            } else if (mOnLoadImageListener != null) {
+                mOnLoadImageListener.onLoadImage(getActivity(), bean, mImageView);
             }
         }
     }
