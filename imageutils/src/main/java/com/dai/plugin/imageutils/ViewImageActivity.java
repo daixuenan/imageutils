@@ -116,7 +116,7 @@ public class ViewImageActivity<T> extends FragmentActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.image_close_enter, R.anim.image_close_exit);
+        overridePendingTransition(R.anim.viewimage_close_enter, R.anim.viewimage_close_exit);
     }
 
     @Override
