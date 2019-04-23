@@ -25,7 +25,7 @@
 modle 的Gradle添加
 
 ```markdown
-implementation 'com.github.daixuenan:imageutils:v1.0.1'
+implementation 'com.github.daixuenan:imageutils:v1.0.2'
 ```
 
 #### 使用说明

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.bumptech.glide.Glide;
 import com.dai.plugin.imageutils.PhotoView;
 import com.dai.plugin.imageutils.ViewImageActivity;
 import com.dai.plugin.imageutils.interfaces.OnLoadImageListener;
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 //PhotoView 继承ImageView，所以可以当作ImageView使用
                 if (bean instanceof ImageBean) {
                     //此处自定义图片加载方法
-                    Glide.with(context).load(((ImageBean) bean).getUrl()).into(imageView);
+//                    Glide.with(context).load(((ImageBean) bean).getUrl()).into(imageView);
                 }
             }
         });
